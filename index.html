@@ -5,33 +5,20 @@
 	<script>
 		// TODO: create a handler
 		function setSearchEngine() {
-			console.log("Inside setSearchEngine");
 			let actionURL;
 			let engine = document.querySelector("input[name=engine]:checked");
-			console.log("engine: " + engine.value)
-
-
-			if (engine !== null) {
-				engine = engine.value;
-				if (engine === "google") {
-					actionURL = "https://www.google.com/search";
-				} else if (engine === "duckDuckGo") {
-					actionURL = "https://duckduckgo.com/";
-				} else if (engine === "bing") {
-					actionURL = "https://www.bing.com/search";
-				} else if (engine === "ask") {
-					actionURL = "https://www.ask.com/web";
-				}
+			let engineObj = {
+				"google" : "https://www.google.com/search",
+				"duckDuckGo" : "https://duckduckgo.com/",
+				"bing" : "https://www.bing.com/search",
+				"ask" : "https://www.ask.com/web"
 			}
 
-			document.querySelector("form").setAttribute("action", actionURL);
+			document.querySelector("form").setAttribute("action", engineObj[engine.value]);
 		}
 		window.addEventListener("load", function () {
-			// TODO: register the handler
 			let submitEvent = document.getElementById("searchForm");
-			submitEvent.addEventListener("submit", function (event) {
-				setSearchEngine();
-			})
+			submitEvent.addEventListener("submit", setSearchEngine);
 		});
 	</script>
 	<style>
@@ -87,7 +74,7 @@
 
 <body>
 
-	<form id="searchForm">
+	<form method="GET" id="searchForm" >
 		<!-- TODO: add form elements -->
 		<div class="content">
 			<div class="innerDiv">
